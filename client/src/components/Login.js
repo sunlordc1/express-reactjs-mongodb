@@ -1,6 +1,10 @@
+import React from "react";
+
 const Login = ()=>{
+  // const [loginState, setLoginState] = useState(['login','register']);
+
   return (
-    <main className="form-signin">
+ 
     <form>
       <img className="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width={72} height={57} />
       <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
@@ -20,7 +24,7 @@ const Login = ()=>{
       <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       <p className="mt-5 mb-3 text-muted">© 2017–2021</p>
     </form>
-  </main>
+
   )
    
 }

@@ -2,18 +2,20 @@
 import './App.css';
 import React from 'react';
 import Login from './components/Login';
-import { Button } from 'reactstrap';
+import Todos from './components/Todos';
 function App() {
-  const myName = "SunLord"
-  const myAge = 20
-  const sum = (a,b)=>{
-    return a + b;
-  }
+  // const myName = "SunLord"
+  // const myAge = 20
+  // const sum = (a,b)=>{
+  //   return a + b;
+  // }
   return (
     <div id="body">
-
-  
+    <main className="form-signin">
+    
     <Login></Login>
+    <Todos></Todos>
+    </main>
     </div>
   );
 }

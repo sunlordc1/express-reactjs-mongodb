@@ -7,3 +7,9 @@ XHR, Fetch, Axios
 - gọi hàm onload để handle kết quả ( ít xài )
 * Fetch API: (cùng với xhr Fetch API là WebApi có sẵn trong trình duyệt, còn trình duyệt cũ thì lưu ý khi sử dụng)
 - Dùng trong project nhỏ, đơn giản
+* AXIOS 
+- sử dụng được trên browser và node.js
+
+* Tổ chức API module như thế nào?
+WebApp
+Api file -> HTTP client(axios,fetch,xhr) -> Server và ngược lại
