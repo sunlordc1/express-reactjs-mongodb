@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 const TodoItem = props =>{
     const todo = props.todoProps
     const markComplete = props.markCompleteFunc;
+    const deleteTodo = props.deleteTodoFunc;
     // Viết dạng style của javascript khi tác động lên element
     const todoItemStyle = {
          textDecoration:todo.completed?'line-through':'none'
@@ -10,12 +11,12 @@ const TodoItem = props =>{
     const buttonStyle = {
         marginLeft:'15px'
     }
+
 //Gắn listener cho input
     return (
         <div className="checkbox mb-3" style={{background:'#f4f4f4'}}>
-            
             <label style={todoItemStyle} ><input type="checkbox" onChange={markComplete.bind(this,todo.id)} checked={todo.completed}/> {todo.title}</label>
-            <button  className="btn btn-danger" style={buttonStyle}>Xóa</button>
+            <button  className="btn btn-danger" style={buttonStyle} onClick={deleteTodo.bind(this,todo.id)}>Xóa</button>
         </div>
 
     )
@@ -24,6 +25,7 @@ const TodoItem = props =>{
 
 TodoItem.propTypes = {
     todoProps:PropTypes.object.isRequired,
-    markCompleteFunc:PropTypes.func.isRequired
+    markCompleteFunc:PropTypes.func.isRequired,
+    deleteTodoFunc:PropTypes.func.isRequired
 }
 export default TodoItem
