@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express'); // khai báo framework
 const mongoose = require('mongoose')
 const app = express() 
@@ -23,12 +25,13 @@ app.use(cors({origin: 'http://localhost:3001'}));
 
 const connectDB = async()=>{
     try{
-        await mongoose.connect('mongodb://localhost/club_manager_system',{
+        await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.pyzeq.mongodb.net/database?retryWrites=true&w=majority`,{
             useNewUrlParser:true,
             useUnifiedTopology:true
-        })
+        }) 
+        console.log("ok db")
     }catch(error){
-        console.log('Lỗi db')
+        console.log(error)
     }
 }
 connectDB ();
@@ -56,7 +59,6 @@ app.get('/fakeTodo',(req,res,next)=>{
    }
    res.json('ok')
 })
-
 const PAGE_SIZE = 4; // Số lượng tối đa lấy được
 app.get('/user',(req,res,next)=>{
     let page = req.query.page;
