@@ -3,13 +3,22 @@ const mongoose = require('mongoose')
 const app = express() 
 const port = process.env.PORT || 3000; // Trong máy tính có rất nhiều cổng cho các chương trình chạy, thường thì 1-1000 thì các cổng đã được máy tính sử dụng r chú ý đặt cổng lớn hơn 1000
 const path= require('path')
-var cors = require('cors');
+const cors = require('cors');
+
+const AccountModel = require('./models/account')
+
+
+var accountRouter = require('./api_v1/account')
+var auth = require('./api_v1/auth')
+var todo = require('./api_v1/todo')
+
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors({origin: 'http://localhost:3001'}));
-const AccountModel = require('./models/account')
-var accountRouter = require('./api_v1/account')
+
+
+
 
 const connectDB = async()=>{
     try{
@@ -23,30 +32,7 @@ const connectDB = async()=>{
 }
 connectDB ();
 
-app.post('/register',(req,res,next)=>{
-    let  username = req.body.username;
-    let  password = req.body.password;
-    // console.log(req.body)
-    AccountModel.findOne({
-        username:username
-    })
-    .then(data=>{
-        if(data){
-            res.json({error:true,message:'User đã tồn tại'})
-        }else{
-            return AccountModel.create({
-                username:username,
-                password:password
-            })
-        }
-    })
-    .then(data=>{ //return bởi AccountModel then tại đây
-            res.json({error:false,message:'Tạo tài khoản thành công'})
-    })
-    .catch(err=>{
-        res.status(500).json({error:true,message:'Tạo tài khoản thất bại'})
-    })
-})
+
 app.get('/fakeAccount',(req,res,next)=>{
     let  username = req.body.username;
     let  password = req.body.password;
@@ -90,36 +76,21 @@ app.get('/user',(req,res,next)=>{
     }
    
 })
-app.post('/login',(req,res,next)=>{
-    let  username = req.body.username;
-    let  password = req.body.password;
 
-    AccountModel.findOne({
-        username:username,
-        password:password
-    })
-    .then(data=>{
-        if(data){
-            res.json({error:false,message:'Đăng nhập thành công'})
-        }else{
-            res.status(500).json({error:true,message:'Đăng nhập thất bại vui lòng kiểm tra lại thông tin đăng nhập'})
-        }
 
-    })
-    .catch(err=>{
-        res.status(500).json({error:true,message:'Đăng nhập thất bại vui lòng kiểm tra lại thông tin đăng nhập'})
-    })
-})
+
+
 //Chỉ folder nào được add static mới được công khai
 app.use('/public',express.static(path.join(__dirname,'/public'))) // folder này được công khai
-app.get('/',(req,res)=>{
-    // Khi chỉ khi server cho phép trả về thì lập tức client mới xem được,còn ngược lại sẽ được server ẩn giấu đi
-    // Muốn làm được điều đó thì server cần phải public ra đường dẫn trong file ( ví dụ ./style.css)
+// app.get('/',(req,res)=>{
+//     // Khi chỉ khi server cho phép trả về thì lập tức client mới xem được,còn ngược lại sẽ được server ẩn giấu đi
+//     // Muốn làm được điều đó thì server cần phải public ra đường dẫn trong file ( ví dụ ./style.css)
     
-    let duongDanFile = path.join(__dirname,'home.html');
-    res.sendFile(duongDanFile)
-})
-
+//     let duongDanFile = path.join(__dirname,'home.html');
+//     res.sendFile(duongDanFile)
+// })
+app.use('/',auth)
+app.use('/todo/',todo)
 app.use('/api/account/',accountRouter)//
 
 

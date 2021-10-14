@@ -18,7 +18,6 @@ const TodoItem = props =>{
             <label style={todoItemStyle} ><input type="checkbox" onChange={markComplete.bind(this,todo.id)} checked={todo.completed}/> {todo.title}</label>
             <button  className="btn btn-danger" style={buttonStyle} onClick={deleteTodo.bind(this,todo.id)}>Xóa</button>
         </div>
-
     )
 }
 //Phải có todoProp này thì component này mới hoạt động bthg ( check isRequired)
