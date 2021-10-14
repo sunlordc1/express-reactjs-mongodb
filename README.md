@@ -10,8 +10,8 @@
 - sử dụng được trên browser và node.js
 
 # Tổ chức API module như thế nào?
-
 * Api file -> HTTP client(axios,fetch,xhr) -> Server và ngược lại
+
 # Lý giải
 * dotenv thư viện để bạn gọi biến cục bộ process (process.env)
 

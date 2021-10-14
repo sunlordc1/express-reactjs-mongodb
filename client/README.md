@@ -1,8 +1,8 @@
->Learning Reacjs
+# Learning Reacjs
 
 - Props dùng để đẩy dữ liệu từ component cha xuống component con
 - Cụ thể về prop:
-Khai báo về 1 prop
+# Khai báo về 1 prop
 > const [todoState,setTodosState] = useState([
 >       {   
 >            id:'todo1',
@@ -10,6 +10,8 @@ Khai báo về 1 prop
 >            completed:false
 >        },
 >])
+
+# Các lý giải
 - Với todoState là biến lưu trữ dữ liệu sẽ được đẩy đi các component khác hay đơn giản nó cũng sử dụng cho chính component của nó,
 - setTodosState là người sửa lại dữ liệu khi có 1 tương tác hoặc điều kiện xảy ra có thể thông qua listener thay đổi (onClick,onChange,onSubmit.....).
 - Sử dụng hàm setTodosState nó sẽ lưu trực tiếp biến nó được truyền vào cho todoState 
