@@ -15,4 +15,6 @@ Khai báo về 1 prop
 - Sử dụng hàm setTodosState nó sẽ lưu trực tiếp biến nó được truyền vào cho todoState 
 - hàm useState có thể chứa 1 string, 1 số hoặc mảng object ...
 - sử dụng biến state cho value input, khi dữ liệu trên input onChange, bạn chỉ cần thay đổi state, value input thay đổi theo
+- import PropTypes from 'prop-types' sử dụng nhằm mục đích kiểm tra các state được prop từ component về xem dữ liệu hợp lệ không, nếu ko hợp lệ component sẽ không được chạy
+
 

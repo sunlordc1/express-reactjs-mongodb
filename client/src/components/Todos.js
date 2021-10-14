@@ -1,26 +1,40 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import AddTodo from "./AddTodo";
 import TodoHeader from "./TodoHeader";
 import TodoItem from "./TodoItem";
-
+import axios from 'axios'
 const Todos = ()=>{
-    const [todoState,setTodosState] = useState([
-        {   
-            id:'todo1',
-            title:'Việc 1',
-            completed:false
-        },
-        {
-            id:'todo2',
-            title:'Việc 2',
-            completed:true
-        },
-        {
-            id:'todo3',
-            title:'Việc 3',
-            completed:false
+    // const [todoState,setTodosState] = useState([
+    //     {   
+    //         id:'todo1',
+    //         title:'Việc 1',
+    //         completed:false
+    //     },
+    //     {
+    //         id:'todo2',
+    //         title:'Việc 2',
+    //         completed:true
+    //     },
+    //     {
+    //         id:'todo3',
+    //         title:'Việc 3',
+    //         completed:false
+    //     }
+    // ])
+    const [todoState,setTodosState] = useState([])
+    useEffect(()=>{
+        const getTodos = async ()=>{
+            try{
+                const res = await axios.get(
+                    'http://localhost:3000/user'
+                )
+                console.log(res.data)
+            }catch(error){
+                console.log(error.message)
+            }
         }
-    ])
+        getTodos()
+    })
     // Check id để thay đổi trạng thái
     const markComplete = id =>{
         const newTodos = todoState.map(todo=>{

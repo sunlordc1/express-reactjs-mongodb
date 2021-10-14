@@ -1,14 +1,27 @@
 const express = require('express'); // khai báo framework
-
+const mongoose = require('mongoose')
 const app = express() 
 const port = process.env.PORT || 3000; // Trong máy tính có rất nhiều cổng cho các chương trình chạy, thường thì 1-1000 thì các cổng đã được máy tính sử dụng r chú ý đặt cổng lớn hơn 1000
 const path= require('path')
-
+var cors = require('cors');
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(cors({origin: 'http://localhost:3001'}));
 const AccountModel = require('./models/account')
 var accountRouter = require('./api_v1/account')
+
+const connectDB = async()=>{
+    try{
+        await mongoose.connect('mongodb://localhost/club_manager_system',{
+            useNewUrlParser:true,
+            useUnifiedTopology:true
+        })
+    }catch(error){
+        console.log('Lỗi db')
+    }
+}
+connectDB ();
 
 app.post('/register',(req,res,next)=>{
     let  username = req.body.username;

@@ -13,3 +13,10 @@ XHR, Fetch, Axios
 * Tổ chức API module như thế nào?
 WebApp
 Api file -> HTTP client(axios,fetch,xhr) -> Server và ngược lại
+
+
+> Chạy project
+* ./ Tại thư mục gốc npm start
+* Cài mongoDB cho máy và tạo db tên club_manager_system
+* Tại thư mục client (cd client) npm start để chạy môi trường client
+* package bên ngoài dành cho server, client gõ bên trong thư mục client

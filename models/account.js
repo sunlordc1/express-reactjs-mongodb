@@ -1,10 +1,5 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/club_manager_system',{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-})
-
 const Schema = mongoose.Schema;
 
 const AccountSchema = new Schema({
