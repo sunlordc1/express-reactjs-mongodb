@@ -14,9 +14,18 @@
 
 # Lý giải
 * dotenv thư viện để bạn gọi biến cục bộ process (process.env)
-
+## JWT:
+* Trong repo này sử dụng package jsonwebtoken, tham khảo library https://jwt.io/libraries
+* Khi người dùng login (với thông tin tại HEADER gửi lên dữ liệu đăng nhập), thì chúng ta sẽ tìm người dùng trong db(PAYLOAD), thì chúng ta encoded lại dữ liệu người dùng đó thành 1 chuỗi token, khi người tạo 1 request nào đó hỏi dữ liệu của server, thì browser sẽ gắn chuỗi token này lên trên HEADER của request đó, và bên phía server khi nhận request sẽ tìm trong header chuỗi token và decoded  chuỗi token trả lại đúng dữ liệu (PAYLOAD) ban đầu đã được encode.
+* Trong token sẽ có đoạn signature chữ kí để tăng tính sở hữu đối với server
 # Chạy project
 * ./ Tại thư mục gốc npm start
 * Cài mongoDB cho máy và tạo db tên club_manager_system , nếu ko có thể cài trên https://cloud.mongodb.com/ rồi add vào param trong biến connectDB của file server.js
 * Tại thư mục client (cd client) npm start để chạy môi trường client
 * package bên ngoài dành cho server, client gõ bên trong thư mục client
+# .env
+PORT =3000
+DB_USERNAME=databaseusername
+DB_DATABASE_NAME=databasename
+DB_PASSWORD=databasepasword
+ACCESS_TOKEN_SECRET=yourjwtsecret

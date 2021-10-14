@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 
 const AccountSchema = new Schema({
     username:String,
-    password:String
+    password:String,
+    refreshToken:{
+        type:String,
+        default:null
+    },
+    
 },{
     collection:'account'
 })
