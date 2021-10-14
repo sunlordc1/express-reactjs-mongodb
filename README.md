@@ -13,7 +13,7 @@ XHR, Fetch, Axios
 * Tổ chức API module như thế nào?
 WebApp
 Api file -> HTTP client(axios,fetch,xhr) -> Server và ngược lại
-
+* dotenv thư viện để bạn gọi biến cục bộ process (process.env)
 
 > Chạy project
 * ./ Tại thư mục gốc npm start
