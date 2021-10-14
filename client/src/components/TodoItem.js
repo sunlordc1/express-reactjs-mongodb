@@ -15,8 +15,8 @@ const TodoItem = props =>{
 //Gắn listener cho input
     return (
         <div className="checkbox mb-3" style={{background:'#f4f4f4'}}>
-            <label style={todoItemStyle} ><input type="checkbox" onChange={markComplete.bind(this,todo.id)} checked={todo.completed}/> {todo.title}</label>
-            <button  className="btn btn-danger" style={buttonStyle} onClick={deleteTodo.bind(this,todo.id)}>Xóa</button>
+            <label style={todoItemStyle} ><input type="checkbox" onChange={markComplete.bind(this,todo._id)} checked={todo.completed}/> {todo.title}</label>
+            <button  className="btn btn-danger" style={buttonStyle} onClick={deleteTodo.bind(this,todo._id)}>Xóa</button>
         </div>
     )
 }

@@ -7,7 +7,7 @@ router.get('/',(req,res,next)=>{
         //get page
         page = parseInt(page);
         page<1?page = 1:page=page
-     
+
         let skip = (page - 1)*PAGE_SIZE  // số lượng bỏ qua
         TodoModel.find({})
         .skip(skip)
@@ -16,9 +16,10 @@ router.get('/',(req,res,next)=>{
             res.json(data)
         })
         .catch(err=>{
-            res.status(500).json({error:true,message:'Cos loi'})
+            res.status(500).json({error:true,message:'Có lỗi'})
 
         })
+        
     }else{
         //get all
         TodoModel.find({})

@@ -26,26 +26,26 @@ const Todos = ()=>{
         const getTodos = async ()=>{
             try{
                 const res = await axios.get(
-                    'http://localhost:3000/user'
+                    'http://localhost:3000/todo'
                 )
-                console.log(res.data)
+                setTodosState(res.data)
             }catch(error){
                 console.log(error.message)
             }
         }
         getTodos()
-    })
+    },[])
     // Check id để thay đổi trạng thái
-    const markComplete = id =>{
+    const markComplete = _id =>{
         const newTodos = todoState.map(todo=>{
-            if(todo.id === id) todo.completed = !todo.completed
+            if(todo._id === _id) todo.completed = !todo.completed
             return todo
         })
         setTodosState(newTodos)
     }
     // Filter ra 1 array mới
-    const deleteTodo = id=>{
-        const newTodos = todoState.filter(todo=>todo.id != id)
+    const deleteTodo = _id=>{
+        const newTodos = todoState.filter(todo=>todo._id !== _id)
         setTodosState(newTodos)
     }
     const addTodo = title =>{
@@ -62,7 +62,7 @@ const Todos = ()=>{
             <TodoHeader/>
             <AddTodo addTodoFunc={addTodo}/>
             {todoState.map(todo=>{
-                return (<TodoItem key={todo.id} todoProps={todo} markCompleteFunc={markComplete}  deleteTodoFunc={deleteTodo} />)
+                return (<TodoItem key={todo._id} todoProps={todo} markCompleteFunc={markComplete}  deleteTodoFunc={deleteTodo} />)
             })}
         </>
     )

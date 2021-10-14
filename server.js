@@ -6,6 +6,7 @@ const path= require('path')
 const cors = require('cors');
 
 const AccountModel = require('./models/account')
+const TodoModel = require('./models/todo')
 
 
 var accountRouter = require('./api_v1/account')
@@ -45,6 +46,17 @@ app.get('/fakeAccount',(req,res,next)=>{
    }
    res.json('ok')
 })
+app.get('/fakeTodo',(req,res,next)=>{
+
+   for (let i = 0 ;i < 20;i++){
+    TodoModel.create({
+        title:'Việc cần làm'+ ' ' + i,
+        completed:false
+    })
+   }
+   res.json('ok')
+})
+
 const PAGE_SIZE = 4; // Số lượng tối đa lấy được
 app.get('/user',(req,res,next)=>{
     let page = req.query.page;
