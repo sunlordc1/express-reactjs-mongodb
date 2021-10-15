@@ -67,7 +67,7 @@ app.post('/login',(req,res,next)=>{
             const tokens = generationTokens(payload)
             console.log(tokens)
             updateRefreshToken(data._id,tokens.refreshToken)
-            res.json({error:false,message:'Đăng nhập thành công',data:tokens})
+            res.json({error:false,message:'Đăng nhập thành công',data:{accessToken:tokens.accessToken}})
         }else{
             res.status(401).json({error:true,message:'Đăng nhập thất bại vui lòng kiểm tra lại thông tin đăng nhập'})
         }
