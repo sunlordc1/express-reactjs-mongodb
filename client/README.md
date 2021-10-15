@@ -18,7 +18,8 @@
 - hàm useState có thể chứa 1 string, 1 số hoặc mảng object ...
 - sử dụng biến state cho value input, khi dữ liệu trên input onChange, bạn chỉ cần thay đổi state, value input thay đổi theo
 - import PropTypes from 'prop-types' sử dụng nhằm mục đích kiểm tra các state được prop từ component về xem dữ liệu hợp lệ không, nếu ko hợp lệ component sẽ không được chạy
-- useEffect sử dụng khi muốn đồng bộ dữ liệu khi có thay đổi đến từ useState 
+- useEffect sử dụng khi muốn đồng bộ dữ liệu khi có thay đổi đến từ useState
+- Muốn useEffect chỉ render 1 lần thêm param sau là [] (chưa lý giải được giải pháp vừa nói)
 
 
 

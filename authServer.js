@@ -80,25 +80,25 @@ app.post('/login',(req,res,next)=>{
 })
 
 app.post('/token',(req,res)=>{
-    const refreshToken = req.body.refreshToken;
-    if(!refreshToken) return res.sendStatus(401)
-    
-    AccountModel.findOne({
-        refreshToken:refreshToken
-    })
-    .then(user=>{
-        try{
-            const decoded = jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET)
-            const tokens = generationTokens(user)
-        }catch(error){
-            console.log(error)
-            res.sendStatus(403)
-        }
-    })
-    .catch(err=>{
-        if(!user) return res.sendStatus(403)
-    })
    
+    const refreshTokens = req.body.refreshToken;
+    console.log(refreshTokens)
+    if(!refreshTokens) return res.sendStatus(401)
+    AccountModel.find({ refreshToken:refreshTokens}, function (err, docs) {
+        console.log(err)
+
+        console.log(docs)
+        // try{
+        //     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET)
+  
+        //      // const tokens = generationTokens(user)
+        //  }catch(error){
+        //      console.log(error)
+        //      res.sendStatus(403)
+        //  }
+        // if(!user) return res.sendStatus(403)
+    });
+  
 
 })
 
