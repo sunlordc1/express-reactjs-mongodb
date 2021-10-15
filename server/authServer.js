@@ -41,13 +41,11 @@ const generationTokens = payload=>{
     return {accessToken,refreshToken}
 }
 
-const updateRefreshToken = (_id,refreshToken)=>{
-    AccountModel.findByIdAndUpdate(_id,{
-        refreshToken:refreshToken
+const updateRefreshToken = async (_id,refreshToken)=>{
+    const refresh = await AccountModel.findByIdAndUpdate(_id,{
+        refreshToken
     })
-
-
-   
+    // console.log(_id,refreshToken)
 }
 //Routing global
 app.post('/login',(req,res,next)=>{
@@ -65,8 +63,9 @@ app.post('/login',(req,res,next)=>{
                 username:data.username,
                 _id:data._id
             }
-            
+
             const tokens = generationTokens(payload)
+            console.log(tokens)
             updateRefreshToken(data._id,tokens.refreshToken)
             res.json({error:false,message:'Đăng nhập thành công',data:tokens})
         }else{
@@ -79,25 +78,13 @@ app.post('/login',(req,res,next)=>{
     })
 })
 
-app.post('/token',(req,res)=>{
+app.post('/token',async (req,res)=>{
    
-    const refreshTokens = req.body.refreshToken;
-    console.log(refreshTokens)
-    if(!refreshTokens) return res.sendStatus(401)
-    AccountModel.find({ refreshToken:refreshTokens}, function (err, docs) {
-        console.log(err)
-
-        console.log(docs)
-        // try{
-        //     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET)
-  
-        //      // const tokens = generationTokens(user)
-        //  }catch(error){
-        //      console.log(error)
-        //      res.sendStatus(403)
-        //  }
-        // if(!user) return res.sendStatus(403)
-    });
+    const refreshToken = req.body.refreshToken;
+    // console.log(refreshToken)
+    if(!refreshToken) return res.sendStatus(401)
+    const rs = await AccountModel.find({ refreshToken});
+    // console.log(rs)
   
 
 })
