@@ -24,7 +24,7 @@ const Login = ()=>{
   }
 
   return (
- 
+    <div className="container">
     <form onSubmit={submit}>
       <p>username: userclone1</p>
       <p>password: userclone</p>
@@ -47,7 +47,7 @@ const Login = ()=>{
       <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       <p className="mt-5 mb-3 text-muted">© 2017–2021</p>
     </form>
-
+</div>
   )
    
 }

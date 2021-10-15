@@ -58,13 +58,13 @@ const Todos = ()=>{
     }
     // Khi sử dụng map trong react thì phải truyền props vào 1 cái key
     return (
-        <>
+        <div className="container">
             <TodoHeader/>
             <AddTodo addTodoFunc={addTodo}/>
             {todoState.map(todo=>{
                 return (<TodoItem key={todo._id} todoProps={todo} markCompleteFunc={markComplete}  deleteTodoFunc={deleteTodo} />)
             })}
-        </>
+        </div>
     )
 
     

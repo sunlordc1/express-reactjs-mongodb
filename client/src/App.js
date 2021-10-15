@@ -1,10 +1,12 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import Login from './components/Login';
-import Todos from './components/Todos';
-
-
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import Navigation from './components/Navigation';
+import Home from './components/Home'
+import Login from './components/Login'
+import Error from './components/Error'
+import Todo from './components/modules/Todo/Todos'
 function App() {
   // const myName = "SunLord"
   // const myAge = 20
@@ -12,18 +14,16 @@ function App() {
   //   return a + b;
   // }
   return (
-    <>
-    <div id="body">
-    <main className="form-signin">
-    
-    <Login></Login>
-    <Todos></Todos>
- 
-    </main>
+    <Router>
+      <Navigation/>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route  path="/login" component={Login}/>
+        <Route  path="/todo" component={Todo}/>
+        <Route  path="/:somestring" component={Error}/>
+      </Switch>
 
-    </div>
-
-        </>
+    </Router>
   );
 }
 export default App;

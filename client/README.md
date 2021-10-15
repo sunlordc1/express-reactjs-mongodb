@@ -22,6 +22,8 @@
 - Muốn useEffect chỉ render 1 lần thêm param sau là [] (chưa lý giải được giải pháp vừa nói)
 # Các lý giải React Router
 - Là bước sau khi bạn đã hiểu về basic React cách hoạt động
-
+- Router chứa switch, chứa route, chứa component
+- Switch xử lý lần lượt các Route từ trên danh sách đổ xuống
+- Route, địa chỉ theo path và trả về component tương ứng theo path trong 1 Router
 
 
